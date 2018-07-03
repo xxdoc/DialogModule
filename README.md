@@ -1,5 +1,5 @@
 # DialogModule
-A simple, easy-to-use, cross-platform, dialog library, inspired by the GameMaker Language dialog functions.
+A simple, easy-to-use, cross-platform, dialog shared library, inspired by the GameMaker Language dialog functions.
 
 ----------------------------------------------------------------------------------------------------------------------------
 
