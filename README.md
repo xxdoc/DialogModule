@@ -3,6 +3,40 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 
 ----------------------------------------------------------------------------------------------------------------------------
 
+Windows Installation:
+
+
+You may optionally install the DLL to your registry, so that you may also use its functions in languages besides GML, such as VBScript and JScript, that you otherwise normally couldn't. Examples on how to do this may be found in the "DialogModule.dll.zip" included file, which contains the source code to the DLL, an example VBScipt file, an example JScript file. and an example Visual Basic 6 project + the Visual Basic 6 compile executable.
+
+To install the DLL, which is NOT required for using it in GameMaker, enter this command into command prompt:
+
+regsvr32 "C:\Path\To\DialogModule.dll"
+
+If you decide you want to uninstall the DLL from your registry, enter this command into command prompt:
+
+regsvr32 /u "C:\Path\To\DialogModule.dll"
+
+After installing the DLL to your registry, you must not move it to a new location, to avoid messing up your installation, so put it somewhere you think it would best fit in.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Linux Installation:
+
+
+The Linux apps that use this extension need zenity installed.
+
+To install zenity on Debian-based Linux distributions, enter this command into the terminal:
+
+sudo apt-get install zenity
+
+The Linux library's source code needs libx11-dev installed.
+
+To install libx11-dev on Debian-based Linux distributions, enter this command into the terminal:
+
+sudo apt-get install libx11-dev
+
+----------------------------------------------------------------------------------------------------------------------------
+
 Function Documentation:
 
 
