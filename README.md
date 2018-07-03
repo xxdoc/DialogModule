@@ -6,7 +6,7 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 Windows Installation:
 
 
-You may optionally install the DLL, so that you may use it in VB5, VB6, VB.NET, VBScript or JScript.
+You may optionally install the DLL, so that you may use it in VB5, VB6, VB.NET, VBScript, or JScript.
 
 To install the DLL, enter this command into command prompt:
 
@@ -16,7 +16,7 @@ To uninstall the DLL, enter this command into command prompt:
 
 regsvr32 /u "C:\Path\To\DialogModule.dll"
 
-After installing the DLL, you must not move it to a new location, to avoid messing up its installation.
+After installing the DLL, you must not move it to a new location, to ensure the file stays installed.
 
 ----------------------------------------------------------------------------------------------------------------------------
 
