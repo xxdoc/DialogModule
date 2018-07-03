@@ -3,7 +3,7 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-Windows Installation:
+Windows Specifics and Installation:
 
 
 Open "DialogModule.sln" with any edition of Microsoft Visual Studio 2017 or later.
@@ -24,7 +24,7 @@ After registering the DLL, you must not move it to a new location, to ensure the
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-Linux Installation:
+Linux Specifics and Installation:
 
 
 Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
@@ -43,7 +43,7 @@ sudo apt-get install libx11-dev
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-Mac Installation:
+Mac Specifics and Installation:
 
 
 Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
