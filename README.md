@@ -1,4 +1,6 @@
 # DialogModule
+----------------------------------------------------------------------------------------------------------------------------
+
 A simple, easy-to-use, dialog library, inspired by the GameMaker Language dialog functions.
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -49,3 +51,5 @@ char *get_directory_alt(char *capt, char *root) This function opens a dialogue a
 
 double get_color(double defcol) This function opens a dialogue and asks the player for a color. defcol is the default color. If the user presses "Cancel" the value -1 is returned.
 
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
