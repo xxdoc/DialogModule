@@ -8,7 +8,7 @@ Windows Installation:
 
 Open "DialogModule.sln" with any edition of Microsoft Visual Studio 2017 or later.
 
-The functions "get_string", "get_password", "get_integer",  and "get_passcode" only work in 32-bit builds.
+The functions "get_string", "get_password", "get_integer",  and "get_passcode" only work in x86 builds.
 
 You may optionally register the DLL, so that you may use it in VB5, VB6, VB.NET, VBScript, or JScript.
 
