@@ -6,6 +6,8 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 Windows Installation:
 
 
+Open "DialogModule.sln" with any edition of Microsoft Visual Studio 2017 or later.
+
 You may optionally register the DLL, so that you may use it in VB5, VB6, VB.NET, VBScript, or JScript.
 
 To register the DLL, enter this command into command prompt:
@@ -20,8 +22,19 @@ After registering the DLL, you must not move it to a new location, to ensure the
 
 ----------------------------------------------------------------------------------------------------------------------------
 
+Mac Installation:
+
+
+Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
+
+This platform is untested and is not garunteed to work. Testers needed!
+
+----------------------------------------------------------------------------------------------------------------------------
+
 Linux Installation:
 
+
+Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
 
 The Linux apps that use this extension need zenity installed.
 
