@@ -16,7 +16,7 @@ If you decide you want to uninstall the DLL from your registry, enter this comma
 
 regsvr32 /u "C:\Path\To\DialogModule.dll"
 
-After installing the DLL to your registry, you must not move it to a new location, to avoid messing up your installation, so put it somewhere you think it would best fit in.
+After installing the DLL to your registry, you must not move it to a new location, to avoid messing up your installation.
 
 ----------------------------------------------------------------------------------------------------------------------------
 
