@@ -6,7 +6,7 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 Windows Installation:
 
 
-You may optionally install the DLL to your registry, so that you may use its functions in languages you otherwise normally couldn't, such as VBScript and JScript.
+You may optionally install the DLL, so that you may use it in VB5, VB6, VB.NET, VBScript or JScript.
 
 To install the DLL, enter this command into command prompt:
 
