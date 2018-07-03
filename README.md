@@ -22,15 +22,6 @@ After registering the DLL, you must not move it to a new location, to ensure the
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-Mac Installation:
-
-
-Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
-
-This platform is untested and is not garunteed to work. Testers needed!
-
-----------------------------------------------------------------------------------------------------------------------------
-
 Linux Installation:
 
 
@@ -47,6 +38,15 @@ The Linux library's source code needs libx11-dev installed.
 To install libx11-dev on Debian-based Linux distributions, enter this command into the terminal:
 
 sudo apt-get install libx11-dev
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Mac Installation:
+
+
+Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
+
+This platform is untested and is not garunteed to work. Testers needed!
 
 ----------------------------------------------------------------------------------------------------------------------------
 
