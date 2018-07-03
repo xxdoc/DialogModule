@@ -46,7 +46,7 @@ Mac Installation:
 
 Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
 
-This platform is untested and is not garunteed to work. Testers needed!
+This platform is untested and is not guaranteed to work. Testers needed!
 
 ----------------------------------------------------------------------------------------------------------------------------
 
