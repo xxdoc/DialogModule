@@ -8,15 +8,15 @@ Windows Installation:
 
 You may optionally install the DLL to your registry, so that you may use its functions in languages you otherwise normally couldn't, such as VBScript and JScript.
 
-To install the DLL, which is NOT required for using it in GameMaker, enter this command into command prompt:
+To install the DLL, enter this command into command prompt:
 
 regsvr32 "C:\Path\To\DialogModule.dll"
 
-If you decide you want to uninstall the DLL from your registry, enter this command into command prompt:
+To uninstall the DLL, enter this command into command prompt:
 
 regsvr32 /u "C:\Path\To\DialogModule.dll"
 
-After installing the DLL to your registry, you must not move it to a new location, to avoid messing up your installation.
+After installing the DLL, you must not move it to a new location, to avoid messing up its installation.
 
 ----------------------------------------------------------------------------------------------------------------------------
 
