@@ -2,8 +2,11 @@
 A simple, easy-to-use, dialog library, inspired by the GameMaker Language dialog functions.
 
 ----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
 
 Function Documentation:
+
+----------------------------------------------------------------------------------------------------------------------------
 
 double show_message(char *str) This function creates a pop-up message box which displays the string defined in the code and a button marked "Ok" to close it.
 
