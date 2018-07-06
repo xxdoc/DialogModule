@@ -41,7 +41,7 @@ sudo apt-get install libx11-dev
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# Function List
+# Documentation
 
 
 double show_message(char * str) This function creates a pop-up message box which displays the string defined in the code and a button marked "Ok" to close it.
