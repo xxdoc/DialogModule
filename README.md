@@ -3,7 +3,7 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# Windows Vista/7/8/8.1/10
+# Windows
 
 
 Open "DialogModule.sln" with any edition of Microsoft Visual Studio 2017 or later.
@@ -22,7 +22,7 @@ After registering the DLL, you must not move it to a new location, to ensure the
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# Linux Debian/RPM/Pacman
+# Linux
 
 
 Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
