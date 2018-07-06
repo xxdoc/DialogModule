@@ -3,7 +3,7 @@ A simple, easy-to-use, cross-platform, dialog API shared library, inspired by th
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# Windows
+# Win32
 
 
 Open "DialogModule.sln" with any edition of Microsoft Visual Studio 2017 or later.
