@@ -22,7 +22,7 @@ After registering the DLL, you must not move it to a new location, to ensure the
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# Linux
+# Ubuntu (Linux)
 
 
 Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
