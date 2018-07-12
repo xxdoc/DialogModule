@@ -1,9 +1,9 @@
 HKCR
 {
-    DialogModule.DialogModuleCtrl = s 'DialogModuleCtrl Class'
-    {
-        CLSID = s '{2fdb7f7d-8f79-4287-a392-efa7162711f1}'
-    }
+	DialogModule.DialogModuleCtrl = s 'DialogModuleCtrl Class'
+	{
+		CLSID = s '{2fdb7f7d-8f79-4287-a392-efa7162711f1}'
+	}
 	NoRemove CLSID
 	{
 		ForceRemove {2fdb7f7d-8f79-4287-a392-efa7162711f1} = s 'DialogModuleCtrl class'
