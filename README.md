@@ -25,7 +25,7 @@ After registering the DLL, you must not move it to a new location, to ensure the
 # Ubuntu (Linux)
 
 
-Open "buildx86.sh" and "buildx64" individually in the terminal to build with the GNU GCC Compiler.
+Open "buildx86.sh" and "buildx64.sh" individually in the terminal to build with the GNU GCC Compiler.
 
 The Linux apps that use this extension need zenity installed.
 
