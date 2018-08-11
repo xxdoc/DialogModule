@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Wed Jul 11 21:28:52 2018
+/* at Fri Aug 10 21:15:14 2018
  */
 /* Compiler settings for DialogModule.idl:
     Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.00.0603 
@@ -286,6 +286,10 @@ EXTERN_C const IID IID_IDialogModuleCtrl;
     IDialogModuleCtrl : public IDispatch
     {
     public:
+        virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_WindowGetCaption( 
+            LONG WindowHandle,
+            /* [retval][out] */ BSTR *pVal) = 0;
+        
         virtual /* [id][propget] */ HRESULT STDMETHODCALLTYPE get_ShowMessage( 
             BSTR Str,
             /* [retval][out] */ DOUBLE *pVal) = 0;
@@ -414,6 +418,11 @@ EXTERN_C const IID IID_IDialogModuleCtrl;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
+        /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_WindowGetCaption )( 
+            IDialogModuleCtrl * This,
+            LONG WindowHandle,
+            /* [retval][out] */ BSTR *pVal);
+        
         /* [id][propget] */ HRESULT ( STDMETHODCALLTYPE *get_ShowMessage )( 
             IDialogModuleCtrl * This,
             BSTR Str,
@@ -533,6 +542,9 @@ EXTERN_C const IID IID_IDialogModuleCtrl;
 #define IDialogModuleCtrl_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
+
+#define IDialogModuleCtrl_get_WindowGetCaption(This,WindowHandle,pVal)	\
+    ( (This)->lpVtbl -> get_WindowGetCaption(This,WindowHandle,pVal) ) 
 
 #define IDialogModuleCtrl_get_ShowMessage(This,Str,pVal)	\
     ( (This)->lpVtbl -> get_ShowMessage(This,Str,pVal) ) 
