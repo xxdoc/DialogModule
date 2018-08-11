@@ -25,7 +25,7 @@ After registering the DLL, you must not move it to a new location, to ensure the
 # Ubuntu (Linux)
 
 
-Open "DialogModule.cbp" with Code::Blocks and build with the GNU GCC Compiler.
+Open "buildx86.sh" and "buildx64" individually in the terminal to build with the GNU GCC Compiler.
 
 The Linux apps that use this extension need zenity installed.
 
@@ -38,6 +38,25 @@ The Linux library's source code needs libx11-dev installed.
 To install libx11-dev on Debian-based Linux distributions, enter this command into the terminal:
 
 sudo apt-get install libx11-dev
+
+----------------------------------------------------------------------------------------------------------------------------
+
+# macOS / Mac OS X
+
+
+Open "buildx86.sh" and "buildx64" individually in the terminal to build with the GNU GCC Compiler.
+
+You sill need the xCode, Homebrew, and GCC installed to build the shared binaries.
+
+xCode is avaialbe on the Mac AppStore, so first off you should be installing that from there.
+
+To install Homebrew, enter this command into the terminal:
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+To install GCC, after you have installed Homebrew, you may enter this command into the terminal:
+
+brew install gcc
 
 ----------------------------------------------------------------------------------------------------------------------------
 
