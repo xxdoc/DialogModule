@@ -44,7 +44,7 @@ sudo apt-get install libx11-dev
 # Mac OS X
 
 
-Open "buildx86.sh" and "buildx64" individually in the terminal to build with the GNU GCC Compiler.
+Open "buildx86.sh" and "buildx64.sh" individually in the terminal to build with the GNU GCC Compiler.
 
 You will need xCode, Homebrew, and GCC installed to build the shared binaries.
 
