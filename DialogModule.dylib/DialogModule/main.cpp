@@ -75,8 +75,8 @@ extern "C"
 
         string str_msg = msg;
         string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\"");
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         tinyfd_messageBox(str_caption.c_str(), str_msg.c_str(), "ok", "info", 1);
 
@@ -99,8 +99,8 @@ extern "C"
 
         string str_msg = msg;
         string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\"");
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         return tinyfd_messageBox(str_caption.c_str(), str_msg.c_str(), "yesno", "question", 1);
     }
@@ -122,7 +122,7 @@ extern "C"
             msg = msg + "Do you want to abort the application?";
 
             string str_msg = msg;
-            str_msg = string_replace_all(str_msg, "\"", "\\\"");
+            str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
 
             double input = tinyfd_messageBox("Error", str_msg.c_str(), "yesno", "error", 1);
 
@@ -137,7 +137,7 @@ extern "C"
             msg = msg + "Click 'OK' to abort the application.";
 
             string str_msg = msg;
-            str_msg = string_replace_all(str_msg, "\"", "\\\"");
+            str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
 
             tinyfd_messageBox("Error", str_msg.c_str(), "ok", "error", 1);
 
@@ -164,9 +164,9 @@ extern "C"
         string str_msg = msg;
         string str_def = def;
         string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\"");
-        str_def = string_replace_all(str_def, "\"", "\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\"");
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_def = string_replace_all(str_def, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         const char *input = tinyfd_inputBox(str_caption.c_str(), str_msg.c_str(), str_def.c_str());
 
@@ -195,9 +195,9 @@ extern "C"
         string str_msg = msg;
         string str_def = def;
         string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\"");
-        str_def = string_replace_all(str_def, "\"", "\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\"");
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_def = string_replace_all(str_def, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         const char *input = tinyfd_passwordBox(str_caption.c_str(), str_msg.c_str(), str_def.c_str());
 
@@ -229,8 +229,8 @@ extern "C"
 
         string str_msg = msg;
         string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\"");
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         const char *input = tinyfd_inputBox(str_caption.c_str(), str_msg.c_str(), integer.c_str());
 
@@ -269,8 +269,8 @@ extern "C"
 
         string str_msg = msg;
         string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\"");
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         const char *input = tinyfd_passwordBox(str_caption.c_str(), str_msg.c_str(), integer.c_str());
 
@@ -293,8 +293,8 @@ extern "C"
     {
         string str_fname = fname;
         string str_filter = filter;
-        str_fname = string_replace_all(str_fname, "\"", "\\\"");
-        str_filter = string_replace_all(str_filter, "\"", "\\\"");
+        str_fname = string_replace_all(str_fname, "\"", "\\\\\\\"");
+        str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
 
         const char *path = tinyfd_openFileDialog("Open", str_fname.c_str(), 0, 0, (char *)str_filter.c_str(), 0);
 
@@ -310,8 +310,8 @@ extern "C"
     {
         string str_fname = fname;
         string str_filter = filter;
-        str_fname = string_replace_all(str_fname, "\"", "\\\"");
-        str_filter = string_replace_all(str_filter, "\"", "\\\"");
+        str_fname = string_replace_all(str_fname, "\"", "\\\\\\\"");
+        str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
 
         const char *path = tinyfd_saveFileDialog("Save As", str_fname.c_str(), 0, 0, (char *)str_filter.c_str());
 
@@ -347,9 +347,9 @@ extern "C"
         string str_fname_or_dir = fname_or_dir;
         string str_titlebar = titlebar;
         string str_filter = filter;
-        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\"");
-        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\"");
-        str_filter = string_replace_all(str_filter, "\"", "\\\"");
+        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
+        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
+        str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
 
         const char *path = tinyfd_openFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(), 0, 0, (char *)str_filter.c_str(), 0);
 
@@ -385,9 +385,9 @@ extern "C"
         string str_fname_or_dir = fname_or_dir;
         string str_titlebar = titlebar;
         string str_filter = filter;
-        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\"");
-        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\"");
-        str_filter = string_replace_all(str_filter, "\"", "\\\"");
+        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
+        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
+        str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
 
         const char *path = tinyfd_saveFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(), 0, 0, (char *)str_filter.c_str());
 
@@ -402,7 +402,7 @@ extern "C"
     char *get_directory(char *dname)
     {
         string str_dname = dname;
-        str_dname = string_replace_all(str_dname, "\"", "\\\"");
+        str_dname = string_replace_all(str_dname, "\"", "\\\\\\\"");
 
         const char *path = tinyfd_selectFolderDialog("Select Directory", str_dname.c_str());
 
@@ -440,8 +440,8 @@ extern "C"
 
         string str_root = root;
         string str_titlebar = titlebar;
-        str_root = string_replace_all(str_root, "\"", "\\\"");
-        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\"");
+        str_root = string_replace_all(str_root, "\"", "\\\\\\\"");
+        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
 
         const char *path = tinyfd_selectFolderDialog(str_titlebar.c_str(), str_root.c_str());
 
