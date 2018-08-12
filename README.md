@@ -25,7 +25,7 @@ After registering the DLL, you must not move it to a new location, to ensure the
 # Ubuntu (Linux)
 
 
-Open "buildx86.sh" and "buildx64.sh" individually in the terminal to build with the GNU GCC Compiler.
+Open "Build.x86.sh" and "Build.x64.sh" individually in the terminal to build with the GNU GCC Compiler.
 
 The Linux apps that use this extension need zenity installed.
 
@@ -44,7 +44,7 @@ sudo apt-get install libx11-dev
 # Mac OS X
 
 
-Open "buildx86.sh" and "buildx64.sh" individually in the terminal to build with the GNU GCC Compiler.
+Open "Build.x86.sh" and "Build.x64.sh" individually in the terminal to build with the GNU GCC Compiler.
 
 You will need xCode, Homebrew, and GCC installed to build the shared binaries.
 
