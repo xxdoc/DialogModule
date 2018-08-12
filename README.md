@@ -63,7 +63,7 @@ brew install gcc
 # Documentation
 
 
-char * window_get_caption(void * window_handle) This function returns the caption of the specified window (this is the text that appears on the top of the window). The string returned is then copied from that window to the dialog windows, so that the dialogs have a window caption that matches the window specified. Call this function before each dialog function that would normally have no window caption, if you want those dialogs to have a window caption. On windows, window_handle can be an HWND. On Mac OS X, window_handle can be an NSWindow * . On Linux, window_handle can be an XLib Window.
+char * window_get_caption(void * window_handle) This function returns the caption of the specified window (this is the text that appears on the top of the window). The string returned is then copied from that window to the dialog windows, so that the dialogs have a window caption that matches the window specified. Call this function before each dialog function that would normally have no window caption, if you want those dialogs to have a window caption. On Windows, window_handle can be an HWND. On Mac OS X, window_handle can be an NSWindow * . On Linux, window_handle can be an XLib Window.
 
 double show_message(char * str) This function creates a pop-up message box which displays the string defined in the code and a button marked "Ok" to close it.
 
