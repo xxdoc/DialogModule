@@ -31,6 +31,67 @@ bool is_number(string input)
     return false;
 }
 
+class FileFilter
+{
+    std::string filter_buf;
+    std::vector<const char*> descriptions_;
+    std::vector<std::vector<const char*>> patterns_;
+    std::vector<const char* const*> cpatterns_;
+    std::vector<int> pattern_counts_;
+    
+public:
+    FileFilter(const std::string &filter): filter_buf(filter + "|") {
+        if (!filter.empty())
+        {
+            size_t start = 0;
+            std::vector<const char*> *curfilter = nullptr;
+            for (size_t i = 0; i < filter_buf.length(); ++i)
+            {
+                if (filter_buf[i] == '|')
+                {
+                    filter_buf[i] = 0;
+                    if (curfilter)
+                    {
+                        curfilter->push_back(filter_buf.c_str() + start);
+                        curfilter = nullptr;
+                    }
+                    else
+                    {
+                        descriptions_.push_back(filter_buf.c_str() + start);
+                        patterns_.push_back({});
+                        curfilter = &patterns_.back();
+                    }
+                    start = i + 1;
+                }
+                else if (curfilter && filter_buf[i] == ';')
+                {
+                    filter_buf[i] = 0;
+                    curfilter->push_back(filter_buf.c_str() + start);
+                    start = i + 1;
+                }
+            }
+            if (descriptions_.size() > patterns_.size())
+            {
+                descriptions_.pop_back();
+            }
+        }
+        pattern_counts_.reserve(descriptions_.size());
+        for (auto &pv : patterns_)
+        {
+            pattern_counts_.push_back(pv.size());
+            pv.push_back(nullptr);
+            cpatterns_.push_back(pv.data());
+        }
+        cpatterns_.push_back(nullptr);
+        descriptions_.push_back(nullptr);
+    }
+    
+    size_t count() const { return patterns_.size(); }
+    const char* const* descriptions() { return descriptions_.data(); }
+    const char* const* const* patterns() { return cpatterns_.data(); }
+    const int* pattern_counts() { return pattern_counts_.data(); }
+};
+
 string string_replace_all(string str, string substr, string newstr)
 {
     size_t pos = 0;
@@ -45,15 +106,15 @@ string string_replace_all(string str, string substr, string newstr)
     return str;
 }
 
-char result[PATH_MAX];
+char result[PATH_MAX + 1];
 string window_caption;
 
 extern "C"
 {
-    const char *cocoa_window_get_caption(void *window_handle);
-    
     char *window_get_caption(void *window)
     {
+        const char *cocoa_window_get_caption(void *window_handle);
+        
         window_caption = cocoa_window_get_caption(window);
         
         return (char *)window_caption.c_str();
@@ -173,7 +234,7 @@ extern "C"
         if (input == NULL)
             input = "";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         return result;
     }
@@ -204,7 +265,7 @@ extern "C"
         if (input == NULL)
             input = "";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         return result;
     }
@@ -240,7 +301,7 @@ extern "C"
         if (is_number(input) == false)
             input = "0";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         std::istringstream text(result);
         double res_integer;
@@ -280,7 +341,7 @@ extern "C"
         if (is_number(input) == false)
             input = "0";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         std::istringstream text(result);
         double res_integer;
@@ -295,13 +356,15 @@ extern "C"
         string str_filter = filter;
         str_fname = string_replace_all(str_fname, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
-
-        const char *path = tinyfd_openFileDialog("Open", str_fname.c_str(), 0, 0, (char *)str_filter.c_str(), 0);
+        FileFilter ff(str_filter.c_str());
+        
+        const char *path = tinyfd_openFileDialog("Open", str_fname.c_str(),
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str(), 0);
 
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -312,13 +375,15 @@ extern "C"
         string str_filter = filter;
         str_fname = string_replace_all(str_fname, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
-
-        const char *path = tinyfd_saveFileDialog("Save As", str_fname.c_str(), 0, 0, (char *)str_filter.c_str());
+        FileFilter ff(str_filter.c_str());
+        
+        const char *path = tinyfd_saveFileDialog("Save As", str_fname.c_str(),
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str());
 
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -350,13 +415,15 @@ extern "C"
         str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
         str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
-
-        const char *path = tinyfd_openFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(), 0, 0, (char *)str_filter.c_str(), 0);
+        FileFilter ff(str_filter.c_str());
+        
+        const char *path = tinyfd_openFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(),
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str(), 0);
 
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -388,13 +455,15 @@ extern "C"
         str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
         str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
-
-        const char *path = tinyfd_saveFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(), 0, 0, (char *)str_filter.c_str());
+        FileFilter ff(str_filter.c_str());
+        
+        const char *path = tinyfd_saveFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(),
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str());
 
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -415,11 +484,11 @@ extern "C"
 
         if (ok_pressed == true)
         {
-            char cstr_path[PATH_MAX];
-            strncpy(cstr_path, path, PATH_MAX);
+            char cstr_path[PATH_MAX + 1];
+            strncpy(cstr_path, path, PATH_MAX + 1);
 
             const char *slash = "/";
-            strncat(cstr_path, slash, PATH_MAX);
+            strncat(cstr_path, slash, PATH_MAX + 1);
 
             str_result = string_replace_all(cstr_path, "//", "/");
         }
@@ -454,11 +523,11 @@ extern "C"
 
         if (ok_pressed == true)
         {
-            char cstr_path[PATH_MAX];
-            strncpy(cstr_path, path, PATH_MAX);
+            char cstr_path[PATH_MAX + 1];
+            strncpy(cstr_path, path, PATH_MAX + 1);
 
             const char *slash = "/";
-            strncat(cstr_path, slash, PATH_MAX);
+            strncat(cstr_path, slash, PATH_MAX + 1);
 
             str_result = string_replace_all(cstr_path, "//", "/");
         }

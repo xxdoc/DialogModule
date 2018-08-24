@@ -105,7 +105,7 @@ string string_replace_all(string str, string substr, string newstr)
     return str;
 }
 
-char result[PATH_MAX];
+char result[PATH_MAX + 1];
 char *window_caption;
 
 extern "C"
@@ -245,7 +245,7 @@ extern "C"
         if (input == NULL)
             input = "";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         return result;
     }
@@ -279,7 +279,7 @@ extern "C"
         if (input == NULL)
             input = "";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         return result;
     }
@@ -317,7 +317,7 @@ extern "C"
         if (is_number(input) == false)
             input = "0";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         std::istringstream text(result);
         double res_integer;
@@ -359,7 +359,7 @@ extern "C"
         if (is_number(input) == false)
             input = "0";
 
-        strncpy(result, input, PATH_MAX);
+        strncpy(result, input, PATH_MAX + 1);
 
         std::istringstream text(result);
         double res_integer;
@@ -384,7 +384,7 @@ extern "C"
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -405,7 +405,7 @@ extern "C"
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -448,7 +448,7 @@ extern "C"
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -491,7 +491,7 @@ extern "C"
         if (path == NULL)
             path = "";
 
-        strncpy(result, path, PATH_MAX);
+        strncpy(result, path, PATH_MAX + 1);
 
         return result;
     }
@@ -513,11 +513,11 @@ extern "C"
 
         if (ok_pressed == true)
         {
-            char cstr_path[PATH_MAX];
-            strncpy(cstr_path, path, PATH_MAX);
+            char cstr_path[PATH_MAX + 1];
+            strncpy(cstr_path, path, PATH_MAX + 1);
 
             const char *slash = "/";
-            strncat(cstr_path, slash, PATH_MAX);
+            strncat(cstr_path, slash, PATH_MAX + 1);
 
             str_result = string_replace_all(cstr_path, "//", "/");
         }
@@ -554,11 +554,11 @@ extern "C"
 
         if (ok_pressed == true)
         {
-            char cstr_path[PATH_MAX];
-            strncpy(cstr_path, path, PATH_MAX);
+            char cstr_path[PATH_MAX + 1];
+            strncpy(cstr_path, path, PATH_MAX + 1);
 
             const char *slash = "/";
-            strncat(cstr_path, slash, PATH_MAX);
+            strncat(cstr_path, slash, PATH_MAX + 1);
 
             str_result = string_replace_all(cstr_path, "//", "/");
         }
