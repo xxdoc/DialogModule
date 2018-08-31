@@ -22,25 +22,6 @@ After registering the DLL, you must not move it to a new location, to ensure the
 
 ----------------------------------------------------------------------------------------------------------------------------
 
-# Ubuntu (Linux)
-
-
-Open "Build.x86.sh" and "Build.x64.sh" individually in the terminal to build with the GNU GCC Compiler.
-
-The Linux apps that use this extension need zenity installed.
-
-To install zenity on Debian-based Linux distributions, enter this command into the terminal:
-
-sudo apt-get install zenity
-
-The Linux library's source code needs libx11-dev installed.
-
-To install libx11-dev on Debian-based Linux distributions, enter this command into the terminal:
-
-sudo apt-get install libx11-dev
-
-----------------------------------------------------------------------------------------------------------------------------
-
 # Mac OS X
 
 
@@ -57,6 +38,25 @@ To install Homebrew, enter this command into the terminal:
 To install GCC, after you have installed Homebrew, you may enter this command into the terminal:
 
 brew install gcc
+
+----------------------------------------------------------------------------------------------------------------------------
+
+# Ubuntu (Linux)
+
+
+Open "Build.x86.sh" and "Build.x64.sh" individually in the terminal to build with the GNU GCC Compiler.
+
+The Linux apps that use this extension need zenity installed.
+
+To install zenity on Debian-based Linux distributions, enter this command into the terminal:
+
+sudo apt-get install zenity
+
+The Linux library's source code needs libx11-dev installed.
+
+To install libx11-dev on Debian-based Linux distributions, enter this command into the terminal:
+
+sudo apt-get install libx11-dev
 
 ----------------------------------------------------------------------------------------------------------------------------
 
