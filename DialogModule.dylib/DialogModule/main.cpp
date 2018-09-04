@@ -1,8 +1,8 @@
 #include "tinyfiledialogs.h"
-#include <sys/stat.h>
 #include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <libgen.h>
 #include <string.h>
 #include <iostream>
 #include <sstream>
@@ -391,16 +391,19 @@ extern "C"
     char *get_open_filename_ext(char *filter, char *fname, char *dir, char *title)
     {
         const char *fname_or_dir;
-
-        if(access(fname, F_OK) != -1)
-            fname_or_dir = fname;
+        
+        string str_fname = fname;
+        string str_dir;
+        
+        if (fname == NULL)
+            str_dir = dir;
         else
-            fname_or_dir = dir;
+            str_dir = string(dir) + string("/") + string(basename((char *)str_fname.c_str()));
 
-        struct stat sb;
-
-        if ((stat(dir, &sb) == 0 && S_ISDIR(sb.st_mode)) == 0)
-            fname_or_dir = "";
+        if(access((char *)str_dir.c_str(), F_OK) != -1)
+            fname_or_dir = (char *)str_dir.c_str();
+        else
+            fname_or_dir = fname;
 
         const char *titlebar;
 
@@ -432,15 +435,18 @@ extern "C"
     {
         const char *fname_or_dir;
 
-        if(access(fname, F_OK) != -1)
-            fname_or_dir = fname;
+        string str_fname = fname;
+        string str_dir;
+        
+        if (fname == NULL)
+            str_dir = dir;
         else
-            fname_or_dir = dir;
-
-        struct stat sb;
-
-        if ((stat(dir, &sb) == 0 && S_ISDIR(sb.st_mode)) == 0)
-            fname_or_dir = "";
+            str_dir = string(dir) + string("/") + string(basename((char *)str_fname.c_str()));
+        
+        if(access((char *)str_dir.c_str(), F_OK) != -1)
+            fname_or_dir = (char *)str_dir.c_str();
+        else
+            fname_or_dir = fname;
 
         const char *titlebar;
 
