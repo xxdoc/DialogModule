@@ -414,15 +414,18 @@ extern "C"
     {
         const char *fname_or_dir;
 
-        if(access(fname, F_OK) != -1)
-            fname_or_dir = fname;
+        string str_fname = fname;
+        string str_dir;
+        
+        if (fname == NULL)
+            str_dir = dir;
         else
-            fname_or_dir = dir;
+            str_dir = string(dir) + string("/") + string(basename((char *)str_fname.c_str()));
 
-        struct stat sb;
-
-        if ((stat(dir, &sb) == 0 && S_ISDIR(sb.st_mode)) == 0)
-            fname_or_dir = "";
+        if(access((char *)str_dir.c_str(), F_OK) != -1)
+            fname_or_dir = (char *)str_dir.c_str();
+        else
+            fname_or_dir = fname;
 
         const char *titlebar;
 
@@ -457,15 +460,18 @@ extern "C"
     {
         const char *fname_or_dir;
 
-        if(access(fname, F_OK) != -1)
-            fname_or_dir = fname;
+        string str_fname = fname;
+        string str_dir;
+        
+        if (fname == NULL)
+            str_dir = dir;
         else
-            fname_or_dir = dir;
+            str_dir = string(dir) + string("/") + string(basename((char *)str_fname.c_str()));
 
-        struct stat sb;
-
-        if ((stat(dir, &sb) == 0 && S_ISDIR(sb.st_mode)) == 0)
-            fname_or_dir = "";
+        if(access((char *)str_dir.c_str(), F_OK) != -1)
+            fname_or_dir = (char *)str_dir.c_str();
+        else
+            fname_or_dir = fname;
 
         const char *titlebar;
 
