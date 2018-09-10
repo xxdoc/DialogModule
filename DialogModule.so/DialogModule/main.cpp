@@ -124,24 +124,18 @@ extern "C"
 
     double show_message(char *str)
     {
-        const char *caption = window_caption;
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
-        string str_caption = caption;
+        string str_msg = str;
+        string str_caption = window_caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\"");
         str_msg = string_replace_all(str_msg, "_", "__");
         str_caption = string_replace_all(str_caption, "_", "__");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
 
         tinyfd_messageBox(str_caption.c_str(), str_msg.c_str(), "ok", "info", 1);
 
@@ -150,45 +144,36 @@ extern "C"
 
     double show_question(char *str)
     {
-        const char *caption = window_caption;
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
-        string str_caption = caption;
+        string str_msg = str;
+        string str_caption = window_caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\"");
         str_msg = string_replace_all(str_msg, "_", "__");
         str_caption = string_replace_all(str_caption, "_", "__");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
 
         return tinyfd_messageBox(str_caption.c_str(), str_msg.c_str(), "yesno", "question", 1);
     }
 
     double show_error(char *str, double abort)
     {
-        string msg;
+        string str_msg = str;
 
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
+        if (str_msg == "")
+            str_msg = " ";
 
         if (abort == 0)
         {
-            if (msg != " ")
-                msg = msg + "\n\n";
+            if (str_msg != " ")
+                str_msg += "\n\n";
 
-            msg = msg + "Do you want to abort the application?";
+            str_msg += "Do you want to abort the application?";
 
-            string str_msg = msg;
             str_msg = string_replace_all(str_msg, "\"", "\\\"");
             str_msg = string_replace_all(str_msg, "_", "__");
 
@@ -199,12 +184,11 @@ extern "C"
         }
         else
         {
-            if (msg != " ")
-                msg = msg + "\n\n";
+            if (str_msg != " ")
+                str_msg += "\n\n";
 
-            msg = msg + "Click 'OK' to abort the application.";
+            str_msg += "Click 'OK' to abort the application.";
 
-            string str_msg = msg;
             str_msg = string_replace_all(str_msg, "\"", "\\\"");
             str_msg = string_replace_all(str_msg, "_", "__");
 
@@ -218,27 +202,21 @@ extern "C"
 
     char *get_string(char *str, char *def)
     {
-        const char *caption = window_caption;
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
+        string str_msg = str;
         string str_def = def;
-        string str_caption = caption;
+        string str_caption = window_caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\"");
         str_def = string_replace_all(str_def, "\"", "\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\"");
         str_msg = string_replace_all(str_msg, "_", "__");
         str_def = string_replace_all(str_def, "_", "__");
         str_caption = string_replace_all(str_caption, "_", "__");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
 
         const char *input = tinyfd_inputBox(str_caption.c_str(), str_msg.c_str(), str_def.c_str());
 
@@ -252,27 +230,21 @@ extern "C"
 
     char *get_password(char *str, char *def)
     {
-        const char *caption = window_caption;
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
+        string str_msg = str;
         string str_def = def;
-        string str_caption = caption;
+        string str_caption = window_caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\"");
         str_def = string_replace_all(str_def, "\"", "\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\"");
         str_msg = string_replace_all(str_msg, "_", "__");
         str_def = string_replace_all(str_def, "_", "__");
         str_caption = string_replace_all(str_caption, "_", "__");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
 
         const char *input = tinyfd_passwordBox(str_caption.c_str(), str_msg.c_str(), str_def.c_str());
 
@@ -286,28 +258,22 @@ extern "C"
 
     double get_integer(char *str, double def)
     {
-        const char *caption = window_caption;
-
-        if (caption == NULL)
-            caption = " ";
-
-        std::ostringstream def_integer;
-        def_integer << def;
-        string integer = def_integer.str();
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
-        string str_caption = caption;
+        string str_msg = str;
+        string str_caption = window_caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\"");
         str_msg = string_replace_all(str_msg, "_", "__");
         str_caption = string_replace_all(str_caption, "_", "__");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
+
+        std::ostringstream def_integer;
+        def_integer << def;
+        string integer = def_integer.str();
 
         const char *input = tinyfd_inputBox(str_caption.c_str(), str_msg.c_str(), integer.c_str());
 
@@ -328,28 +294,22 @@ extern "C"
 
     double get_passcode(char *str, double def)
     {
-        const char *caption = window_caption;
-
-        if (caption == NULL)
-            caption = " ";
-
-        std::ostringstream def_integer;
-        def_integer << def;
-        string integer = def_integer.str();
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
-        string str_caption = caption;
+        string str_msg = str;
+        string str_caption = window_caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\"");
         str_msg = string_replace_all(str_msg, "_", "__");
         str_caption = string_replace_all(str_caption, "_", "__");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
+
+        std::ostringstream def_integer;
+        def_integer << def;
+        string integer = def_integer.str();
 
         const char *input = tinyfd_passwordBox(str_caption.c_str(), str_msg.c_str(), integer.c_str());
 
@@ -379,7 +339,7 @@ extern "C"
         FileFilter ff(str_filter.c_str());
 
         const char *path = tinyfd_openFileDialog("Open", str_fname.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str(), 0);
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str(), 0);
 
         if (path == NULL)
             path = "";
@@ -400,7 +360,7 @@ extern "C"
         FileFilter ff(str_filter.c_str());
 
         const char *path = tinyfd_saveFileDialog("Save As", str_fname.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str());
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str());
 
         if (path == NULL)
             path = "";
@@ -412,41 +372,34 @@ extern "C"
 
     char *get_open_filename_ext(char *filter, char *fname, char *dir, char *title)
     {
-        const char *fname_or_dir;
+        string str_fname_or_dir;
+        string str_titlebar = title;
+        string str_filter = filter;
+        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
+        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
+        str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
+        FileFilter ff(str_filter.c_str());
 
         string str_fname = fname;
         string str_dir;
-        
-        if (fname == NULL)
+
+        char *cstr_fname = (char *)str_fname.c_str();
+
+        if (str_fname == "")
             str_dir = dir;
         else
-            str_dir = string(dir) + string("/") + string(basename((char *)str_fname.c_str()));
+            str_dir = string(dir) + string("/") + string(basename(cstr_fname));
 
         if(access((char *)str_dir.c_str(), F_OK) != -1)
-            fname_or_dir = (char *)str_dir.c_str();
+            str_fname_or_dir = (char *)str_dir.c_str();
         else
-            fname_or_dir = fname;
+            str_fname_or_dir = fname;
 
-        const char *titlebar;
-
-        if (title == NULL)
-            titlebar = "Open";
-        else
-            titlebar = title;
-
-        string str_fname_or_dir = fname_or_dir;
-        string str_titlebar = titlebar;
-        string str_filter = filter;
-        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\"");
-        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\"");
-        str_filter = string_replace_all(str_filter, "\"", "\\\"");
-        str_fname_or_dir = string_replace_all(str_fname_or_dir, "_", "__");
-        str_titlebar = string_replace_all(str_titlebar, "_", "__");
-        str_filter = string_replace_all(str_filter, "_", "__");
-        FileFilter ff(str_filter.c_str());
+        if (str_titlebar == "")
+            str_titlebar = "Open";
 
         const char *path = tinyfd_openFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str(), 0);
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str(), 0);
 
         if (path == NULL)
             path = "";
@@ -458,41 +411,34 @@ extern "C"
 
     char *get_save_filename_ext(char *filter, char *fname, char *dir, char *title)
     {
-        const char *fname_or_dir;
+        string str_fname_or_dir;
+        string str_titlebar = title;
+        string str_filter = filter;
+        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
+        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
+        str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
+        FileFilter ff(str_filter.c_str());
 
         string str_fname = fname;
         string str_dir;
-        
-        if (fname == NULL)
+
+        char *cstr_fname = (char *)str_fname.c_str();
+
+        if (str_fname == "")
             str_dir = dir;
         else
-            str_dir = string(dir) + string("/") + string(basename((char *)str_fname.c_str()));
+            str_dir = string(dir) + string("/") + string(basename(cstr_fname));
 
         if(access((char *)str_dir.c_str(), F_OK) != -1)
-            fname_or_dir = (char *)str_dir.c_str();
+            str_fname_or_dir = (char *)str_dir.c_str();
         else
-            fname_or_dir = fname;
+            str_fname_or_dir = fname;
 
-        const char *titlebar;
-
-        if (title == NULL)
-            titlebar = "Save As";
-        else
-            titlebar = title;
-
-        string str_fname_or_dir = fname_or_dir;
-        string str_titlebar = titlebar;
-        string str_filter = filter;
-        str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\"");
-        str_titlebar = string_replace_all(str_titlebar, "\"", "\\\"");
-        str_filter = string_replace_all(str_filter, "\"", "\\\"");
-        str_fname_or_dir = string_replace_all(str_fname_or_dir, "_", "__");
-        str_titlebar = string_replace_all(str_titlebar, "_", "__");
-        str_filter = string_replace_all(str_filter, "_", "__");
-        FileFilter ff(str_filter.c_str());
+        if (str_titlebar == "")
+            str_titlebar = "Save As";
 
         const char *path = tinyfd_saveFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str());
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str());
 
         if (path == NULL)
             path = "";
@@ -535,19 +481,15 @@ extern "C"
 
     char *get_directory_alt(char *capt, char *root)
     {
-        const char *titlebar;
-
-        if (capt == NULL)
-            titlebar = "Browse For Folder";
-        else
-            titlebar = capt;
-
         string str_root = root;
-        string str_titlebar = titlebar;
+        string str_titlebar = capt;
         str_root = string_replace_all(str_root, "\"", "\\\"");
         str_titlebar = string_replace_all(str_titlebar, "\"", "\\\"");
         str_root = string_replace_all(str_root, "_", "__");
         str_titlebar = string_replace_all(str_titlebar, "_", "__");
+
+        if (str_titlebar == "")
+            str_titlebar = "Browse For Folder";
 
         const char *path = tinyfd_selectFolderDialog(str_titlebar.c_str(), str_root.c_str());
 
