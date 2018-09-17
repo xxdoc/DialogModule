@@ -6,7 +6,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Sat Sep 15 18:19:07 2018
+/* at Mon Sep 17 15:59:13 2018
  */
 /* Compiler settings for DialogModule.idl:
     Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.00.0603 
