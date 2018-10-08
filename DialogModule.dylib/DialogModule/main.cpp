@@ -1,8 +1,8 @@
 #include "tinyfiledialogs.h"
-#include <sys/stat.h>
 #include <limits.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <libgen.h>
 #include <string.h>
 #include <iostream>
 #include <sstream>
@@ -123,19 +123,16 @@ extern "C"
     double show_message(char *str)
     {
         const char *caption = window_caption.c_str();
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
+        
+        string str_msg = str;
         string str_caption = caption;
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
+        
         str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
@@ -147,19 +144,16 @@ extern "C"
     double show_question(char *str)
     {
         const char *caption = window_caption.c_str();
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
+        
+        string str_msg = str;
         string str_caption = caption;
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
+
         str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
@@ -168,21 +162,17 @@ extern "C"
 
     double show_error(char *str, double abort)
     {
-        string msg;
+        string str_msg = str;
 
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
+        if (str_msg == "")
+            str_msg = " ";
 
         if (abort == 0)
         {
-            if (msg != " ")
-                msg = msg + "\n\n";
+            if (str_msg != " ")
+                str_msg += "\n\n";
 
-            msg = msg + "Do you want to abort the application?";
-
-            string str_msg = msg;
+            str_msg += "Do you want to abort the application?";
             str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
 
             double input = tinyfd_messageBox("Error", str_msg.c_str(), "yesno", "error", 1);
@@ -192,12 +182,10 @@ extern "C"
         }
         else
         {
-            if (msg != " ")
-                msg = msg + "\n\n";
+            if (str_msg != " ")
+                str_msg += "\n\n";
 
-            msg = msg + "Click 'OK' to abort the application.";
-
-            string str_msg = msg;
+            str_msg += "Click 'OK' to abort the application.";
             str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
 
             tinyfd_messageBox("Error", str_msg.c_str(), "ok", "error", 1);
@@ -211,23 +199,19 @@ extern "C"
     char *get_string(char *str, char *def)
     {
         const char *caption = window_caption.c_str();
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
+        
+        string str_msg = str;
         string str_def = def;
         string str_caption = caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
         str_def = string_replace_all(str_def, "\"", "\\\\\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
 
         const char *input = tinyfd_inputBox(str_caption.c_str(), str_msg.c_str(), str_def.c_str());
 
@@ -242,23 +226,19 @@ extern "C"
     char *get_password(char *str, char *def)
     {
         const char *caption = window_caption.c_str();
-
-        if (caption == NULL)
-            caption = " ";
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
+        
+        string str_msg = str;
         string str_def = def;
         string str_caption = caption;
         str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
         str_def = string_replace_all(str_def, "\"", "\\\\\\\"");
         str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
+
+        if (str_caption == "")
+            str_caption = " ";
+
+        if (str_msg == "")
+            str_msg = " ";
 
         const char *input = tinyfd_passwordBox(str_caption.c_str(), str_msg.c_str(), str_def.c_str());
 
@@ -273,25 +253,21 @@ extern "C"
     double get_integer(char *str, double def)
     {
         const char *caption = window_caption.c_str();
+        
+        string str_msg = str;
+        string str_caption = caption;
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
-        if (caption == NULL)
-            caption = " ";
+        if (str_caption == "")
+            str_caption = " ";
+        
+        if (str_msg == "")
+            str_msg = " ";
 
         std::ostringstream def_integer;
         def_integer << def;
         string integer = def_integer.str();
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
-        string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         const char *input = tinyfd_inputBox(str_caption.c_str(), str_msg.c_str(), integer.c_str());
 
@@ -313,25 +289,21 @@ extern "C"
     double get_passcode(char *str, double def)
     {
         const char *caption = window_caption.c_str();
+        
+        string str_msg = str;
+        string str_caption = caption;
+        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
+        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
-        if (caption == NULL)
-            caption = " ";
+        if (str_caption == "")
+            str_caption = " ";
+        
+        if (str_msg == "")
+            str_msg = " ";
 
         std::ostringstream def_integer;
         def_integer << def;
         string integer = def_integer.str();
-
-        const char *msg;
-
-        if (str == NULL)
-            msg = " ";
-        else
-            msg = str;
-
-        string str_msg = msg;
-        string str_caption = caption;
-        str_msg = string_replace_all(str_msg, "\"", "\\\\\\\"");
-        str_caption = string_replace_all(str_caption, "\"", "\\\\\\\"");
 
         const char *input = tinyfd_passwordBox(str_caption.c_str(), str_msg.c_str(), integer.c_str());
 
@@ -356,10 +328,34 @@ extern "C"
         string str_filter = filter;
         str_fname = string_replace_all(str_fname, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
+        string str_filter2 = string_replace_all(str_filter, "*.", "");
+        size_t first_line_pos = str_filter2.find("|");
+
+        if (first_line_pos != string::npos)
+        {
+            size_t first_star_pos = str_filter2.find("*", first_line_pos + 1);
+            
+            if (first_star_pos != string::npos)
+            {
+                size_t second_line_pos = str_filter2.find("|", first_line_pos + 1);
+                
+                if (second_line_pos != string::npos)
+                {
+                    if (first_line_pos < first_star_pos && first_star_pos < second_line_pos)
+                        str_filter = "";
+                }
+                else
+                {
+                    if (first_line_pos < first_star_pos)
+                        str_filter = "";
+                }
+            }
+        }
+
         FileFilter ff(str_filter.c_str());
         
         const char *path = tinyfd_openFileDialog("Open", str_fname.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str(), 0);
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str(), 0);
 
         if (path == NULL)
             path = "";
@@ -375,10 +371,34 @@ extern "C"
         string str_filter = filter;
         str_fname = string_replace_all(str_fname, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
+        string str_filter2 = string_replace_all(str_filter, "*.", "");
+        size_t first_line_pos = str_filter2.find("|");
+        
+        if (first_line_pos != string::npos)
+        {
+            size_t first_star_pos = str_filter2.find("*", first_line_pos + 1);
+            
+            if (first_star_pos != string::npos)
+            {
+                size_t second_line_pos = str_filter2.find("|", first_line_pos + 1);
+                
+                if (second_line_pos != string::npos)
+                {
+                    if (first_line_pos < first_star_pos && first_star_pos < second_line_pos)
+                        str_filter = "";
+                }
+                else
+                {
+                    if (first_line_pos < first_star_pos)
+                        str_filter = "";
+                }
+            }
+        }
+        
         FileFilter ff(str_filter.c_str());
         
         const char *path = tinyfd_saveFileDialog("Save As", str_fname.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str());
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str());
 
         if (path == NULL)
             path = "";
@@ -390,35 +410,58 @@ extern "C"
 
     char *get_open_filename_ext(char *filter, char *fname, char *dir, char *title)
     {
-        const char *fname_or_dir;
-
-        if(access(fname, F_OK) != -1)
-            fname_or_dir = fname;
-        else
-            fname_or_dir = dir;
-
-        struct stat sb;
-
-        if ((stat(dir, &sb) == 0 && S_ISDIR(sb.st_mode)) == 0)
-            fname_or_dir = "";
-
-        const char *titlebar;
-
-        if (title == NULL)
-            titlebar = "Open";
-        else
-            titlebar = title;
-
-        string str_fname_or_dir = fname_or_dir;
-        string str_titlebar = titlebar;
+        string str_fname_or_dir;
+        string str_titlebar = title;
         string str_filter = filter;
         str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
         str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
+        string str_filter2 = string_replace_all(str_filter, "*.", "");
+        size_t first_line_pos = str_filter2.find("|");
+        
+        if (first_line_pos != string::npos)
+        {
+            size_t first_star_pos = str_filter2.find("*", first_line_pos + 1);
+            
+            if (first_star_pos != string::npos)
+            {
+                size_t second_line_pos = str_filter2.find("|", first_line_pos + 1);
+                
+                if (second_line_pos != string::npos)
+                {
+                    if (first_line_pos < first_star_pos && first_star_pos < second_line_pos)
+                        str_filter = "";
+                }
+                else
+                {
+                    if (first_line_pos < first_star_pos)
+                        str_filter = "";
+                }
+            }
+        }
+        
         FileFilter ff(str_filter.c_str());
         
+        string str_fname = fname;
+        string str_dir;
+        
+        char *cstr_fname = (char *)str_fname.c_str();
+        
+        if (str_fname == "")
+            str_dir = dir;
+        else
+            str_dir = string(dir) + string("/") + string(basename(cstr_fname));
+
+        if(access((char *)str_dir.c_str(), F_OK) != -1)
+            str_fname_or_dir = (char *)str_dir.c_str();
+        else
+            str_fname_or_dir = fname;
+
+        if (str_titlebar == "")
+            str_titlebar = "Open";
+        
         const char *path = tinyfd_openFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str(), 0);
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str(), 0);
 
         if (path == NULL)
             path = "";
@@ -430,35 +473,58 @@ extern "C"
 
     char *get_save_filename_ext(char *filter, char *fname, char *dir, char *title)
     {
-        const char *fname_or_dir;
-
-        if(access(fname, F_OK) != -1)
-            fname_or_dir = fname;
-        else
-            fname_or_dir = dir;
-
-        struct stat sb;
-
-        if ((stat(dir, &sb) == 0 && S_ISDIR(sb.st_mode)) == 0)
-            fname_or_dir = "";
-
-        const char *titlebar;
-
-        if (title == NULL)
-            titlebar = "Save As";
-        else
-            titlebar = title;
-
-        string str_fname_or_dir = fname_or_dir;
-        string str_titlebar = titlebar;
+        string str_fname_or_dir;
+        string str_titlebar = title;
         string str_filter = filter;
         str_fname_or_dir = string_replace_all(str_fname_or_dir, "\"", "\\\\\\\"");
         str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
         str_filter = string_replace_all(str_filter, "\"", "\\\\\\\"");
+        string str_filter2 = string_replace_all(str_filter, "*.", "");
+        size_t first_line_pos = str_filter2.find("|");
+        
+        if (first_line_pos != string::npos)
+        {
+            size_t first_star_pos = str_filter2.find("*", first_line_pos + 1);
+            
+            if (first_star_pos != string::npos)
+            {
+                size_t second_line_pos = str_filter2.find("|", first_line_pos + 1);
+                
+                if (second_line_pos != string::npos)
+                {
+                    if (first_line_pos < first_star_pos && first_star_pos < second_line_pos)
+                        str_filter = "";
+                }
+                else
+                {
+                    if (first_line_pos < first_star_pos)
+                        str_filter = "";
+                }
+            }
+        }
+        
         FileFilter ff(str_filter.c_str());
         
+        string str_fname = fname;
+        string str_dir;
+        
+        char *cstr_fname = (char *)str_fname.c_str();
+        
+        if (str_fname == "")
+            str_dir = dir;
+        else
+            str_dir = string(dir) + string("/") + string(basename(cstr_fname));
+        
+        if(access((char *)str_dir.c_str(), F_OK) != -1)
+            str_fname_or_dir = (char *)str_dir.c_str();
+        else
+            str_fname_or_dir = fname;
+        
+        if (str_titlebar == "")
+            str_titlebar = "Save As";
+        
         const char *path = tinyfd_saveFileDialog(str_titlebar.c_str(), str_fname_or_dir.c_str(),
-            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), (char *)str_filter.c_str());
+            ff.count() ? *ff.pattern_counts() : 0, *ff.patterns(), str_filter.c_str());
 
         if (path == NULL)
             path = "";
@@ -500,17 +566,13 @@ extern "C"
 
     char *get_directory_alt(char *capt, char *root)
     {
-        const char *titlebar;
-
-        if (capt == NULL)
-            titlebar = "Browse For Folder";
-        else
-            titlebar = capt;
-
         string str_root = root;
-        string str_titlebar = titlebar;
+        string str_titlebar = capt;
         str_root = string_replace_all(str_root, "\"", "\\\\\\\"");
         str_titlebar = string_replace_all(str_titlebar, "\"", "\\\\\\\"");
+
+        if (str_titlebar == "")
+            str_titlebar = "Browse For Folder";
 
         const char *path = tinyfd_selectFolderDialog(str_titlebar.c_str(), str_root.c_str());
 
